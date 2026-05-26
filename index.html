@@ -389,6 +389,20 @@
     document.getElementById('finalTime').textContent = chosenTime;
     document.getElementById('finalFood').textContent = "Tonight we're eating: " + chosenFood + " 😍";
     goTo(5);
+    submitToFormspree();
+  }
+
+  function submitToFormspree() {
+    fetch('https://formspree.io/f/xykvnljz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '💌 Grace picked a date!',
+        Date: chosenDate,
+        Time: chosenTime,
+        Cuisine: chosenFood
+      })
+    }).catch(function() {});
   }
 
   function launchConfetti() {
